@@ -4,7 +4,7 @@
         <h2>{{currentBlog.title}}</h2>
         <!-- <small>blog number - {{currentBlog.blogId}}</small> -->
         <p>posted by {{currentBlog.author}} on {{currentBlog.created | date}}</p>
-        <p *ngIf="currentBlog.tags.length!=undefined && currentBlog.tags.length>0">tags : <span *ngFor="let tag of currentBlog.tags;let first=first;let last=last">{{tag}}{{last ? '' : ', '}}</span></p>
+        <p *ngIf="currentBlog.tags!=undefined && currentBlog.tags.length>0">tags : <span *ngFor="let tag of currentBlog.tags;let first=first;let last=last">{{tag}}{{last ? '' : ', '}}</span></p>
         <hr>
         <div [innerHtml]="currentBlog.bodyHtml"></div>
         <hr>
@@ -14,13 +14,13 @@
     <hr>
     <div class="row text-center" *ngIf="currentBlog">
       <div class="col-md-4">
-        <a class="btn btn-primary" [routerLink]="['/edit',currentBlog.blogId]">Edit </a>
+        <a class="btn btn-primary" [routerLink]="['/edit', currentBlog.blogId]">Edit </a>
       </div>
       <div class="col-md-4">
-        <button type="button" class="btn btn-danger" >Delete </button>
+        <button type="button" class="btn btn-danger" (click)="deleteThisBlog()" >Delete </button>
       </div>
       <div class="col-md-4">
-        <button type="button" class="btn btn-warning" >Go Back </button>
+        <button type="button" class="btn btn-warning" (click)="goBackToPreviousPage()">Go Back </button>
   
       </div>
   

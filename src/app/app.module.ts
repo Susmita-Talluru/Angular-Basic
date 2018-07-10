@@ -1,6 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { CommonModule } from '@angular/common';
+
+import { FormsModule } from '@angular/forms';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 // router module used for setting up the application level route
 import { RouterModule, Routes } from '@angular/router';
 
@@ -18,11 +25,7 @@ import { BlogHttpService } from './blog-http.service';
 
 // import statements for API 
 import { HttpClientModule } from '@angular/common/http';
-imports: [
-  BrowserModule,
-  HttpClientModule,
-  
-  ]
+
 
 //decorators
 @NgModule({
@@ -35,8 +38,14 @@ imports: [
     AboutComponent,
     NotFoundComponent
   ],
+  
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     //routerModule forRoot method to declare the possible routes in application
     RouterModule.forRoot([
       {path:'home',component:HomeComponent},
@@ -45,7 +54,7 @@ imports: [
       {path:'blog/:blogId',component:BlogViewComponent},
       {path:'create',component:BlogCreateComponent},
       {path:'edit/:blogId',component:BlogEditComponent},
-      {path:'**',component:NotFoundComponent}
+      {path:'**',component:NotFoundComponent},
     ])
   ],
   providers: [BlogService,BlogHttpService],
